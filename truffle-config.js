@@ -6,7 +6,7 @@ module.exports = {
     polygon_testnet: {
       provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, 'https://rpc-amoy.polygon.technology/'),
       network_id: 80002,
-      gas: 3000000,
+      gas: 30000000,
       gasPrice: 25000000000 
     },
   },
