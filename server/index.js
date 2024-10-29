@@ -24,8 +24,16 @@ app.use(express.json());
 // Ruta para crear un pool
 app.post("/create-pool", async (req, res) => {
   try {
-    const { name, description, goal, durationInDays, tokenAmount, codigoLote } = req.body;
-    const tx = await contract.createPool(name, description, goal, durationInDays, tokenAmount, codigoLote);
+    const { name, description, goal, durationInDays, tokenAmount, codigoLote } =
+      req.body;
+    const tx = await contract.createPool(
+      name,
+      description,
+      goal,
+      durationInDays,
+      tokenAmount,
+      codigoLote
+    );
     await tx.wait();
     res.json({
       message: "Pool created successfully",
@@ -82,6 +90,37 @@ app.post("/withdraw-funds", async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Error withdrawing funds" });
+  }
+});
+
+// Ruta para obtener todos los lotes
+app.get("/lotes", async (req, res) => {
+  try {
+    const loteCount = await contract.loteCounter(); // Obtener la cantidad de lotes creados
+    const lotesArray = [];
+
+    for (let i = 0; i < loteCount; i++) {
+      const lote = await contract.getLote(i); // Obtener cada lote individual
+      lotesArray.push(lote); // Agregarlo al array
+    }
+
+    res.json(lotesArray);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error obteniendo los lotes" });
+  }
+});
+
+app.get("/porcentaje-venta/:loteId", async (req, res) => {
+  try {
+    const loteId = parseInt(req.params.loteId, 10);
+    const porcentaje = await contract.porcentajeVenta(loteId);
+    res.json({
+      porcentaje: porcentaje.toString(),
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error obteniendo el porcentaje de venta" });
   }
 });
 

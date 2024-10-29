@@ -2,7 +2,7 @@
   "name": "agroblock",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "type": "commonjs",
   "proxy": "http://localhost:3000",
   "scripts": {
     "dev": "vite",
