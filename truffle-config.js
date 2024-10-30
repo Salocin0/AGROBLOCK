@@ -2,13 +2,19 @@ require('dotenv').config();
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 module.exports = {
+  plugins: ["truffle-plugin-verify"],
+  api_keys: {
+    polygonscan: "TU_CLAVE_API_POLYGONSCAN",
+  },
   networks: {
     polygon_testnet: {
-      provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, 'https://rpc-amoy.polygon.technology/'),
+      provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, 'https://rpc-amoy.polygon.technology'),
       network_id: 80002,
-      gas: 30000000,
+      gas: 6000000,
       gasPrice: 25000000000,
-      timeout:600000
+      timeout:600000,
+      timeoutBlocks: 200,
+      networkCheckTimeout: 1000000,
     },
   },
   compilers: {
