@@ -4,27 +4,32 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 module.exports = {
   networks: {
     polygon_testnet: {
-      provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, 'https://rpc-amoy.polygon.technology'), // Considera usar un RPC alternativo
-      network_id: 80002, // Asegúrate de que el ID de la red sea correcto (80001 para Mumbai)
-      gas: 1500000, // Aumenta el gas disponible
-      gasPrice: 25000000000, // Aumenta el gas price a 60 gwei
-      timeout: 10000, // Aumenta el tiempo de espera
-      timeoutBlocks: 100, // Aumenta los bloques de timeout
-      networkCheckTimeout: 10000, // Aumenta el tiempo de espera para verificar la red
-      skipDryRun: true, // Ignora la verificación de prueba
-      allowUnlimitedContractSize: true, // Permite el tamaño de contrato ilimitado
+      provider: () => new HDWalletProvider(process.env.PRIVATE_KEY, 'https://rpc-amoy.polygon.technology'),
+      network_id: 80002,
+      gas: 6000000,
+      gasPrice: 60000000000,
+      timeout: 10000,
+      timeoutBlocks: 200,
+      networkCheckTimeout: 100000,
+      allowUnlimitedContractSize: true,
+      confirmations: 2,
+      skipDryRun: true,
     },
   },
   compilers: {
     solc: {
-      version: "0.8.28", // Mantén la versión de Solidity
+      version: "0.8.28",
       settings: {
         optimizer: {
           enabled: true,
-          runs: 100, // Mantén las configuraciones del optimizador
+          runs: 200,
         },
         viaIR: true,
       },
     },
+  },
+  plugins: ["truffle-plugin-verify"],
+  api_keys: {
+    polygonscan: process.env.POLYGONSCAN_API,
   },
 };

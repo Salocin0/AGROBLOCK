@@ -7,6 +7,8 @@
 -   Nahuel Saba
 -   Boschin Gonzalo
 -   Nicolette Bloin
+## ultima version del contrato verificado y deployado
+- 0x796DFd322B1Dae3DB45B88cbd2E00e6fEA5a64B2
 ## Descripcion
 Este contrato permite la creación de pools de inversión diseñados específicamente para adquirir terrenos agrícolas. A través de estos pools, múltiples inversores pueden contribuir con capital, formando colectivamente un fondo de inversión destinado a la compra de un terreno agrícola determinado. La meta de cada pool es alcanzar un objetivo de compra predefinido, que representa el monto total necesario para adquirir el terreno.
 
