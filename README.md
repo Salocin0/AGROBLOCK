@@ -9,7 +9,7 @@
 - Boschin Gonzalo
 - Nicolette Bloin
 
-## ultima version del contrato verificado y deployado
+## Ultima version del contrato verificado y deployado
 
 - [Link a polygonscan](https://amoy.polygonscan.com/address/0x796DFd322B1Dae3DB45B88cbd2E00e6fEA5a64B2)
 
